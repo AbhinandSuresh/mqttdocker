@@ -1,5 +1,13 @@
 FROM ubuntu:latest
-RUN apt update
-RUN apt install -y mosquitto
-CMD ["mosquitto","-p","2021"]
+
+WORKDIR /mqttdocker
+
+COPY scriptformqttdocker.sh /mqttdocker
+
+RUN chmod 777 scriptformqttdocker.sh &&\
+./scriptformqttdocker.sh
+
+COPY . /mqttdocker
+
+CMD ["supervisord","-n","-c","supervisord.conf"]
 

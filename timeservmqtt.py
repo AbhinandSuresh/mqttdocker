@@ -5,7 +5,7 @@ import sys
 
 import paho.mqtt.client as mqtt #import the client1
 broker_address="localhost"
-broker_port=2021
+broker_port=1883
 client = mqtt.Client("P1") #create new instance
 client.connect(broker_address,broker_port) #connect to broker
 while True:

@@ -4,6 +4,7 @@
 #include <MQTTAsync.h>
 #include <time.h>
 #include <sqlite3.h>
+#include <unistd.h>
 
 #define ADDRESS     "tcp://localhost:1883"
 #define CLIENTID1   "ClientPub"
@@ -298,12 +299,12 @@ void connlost(void *context, char *cause)
 int main(int argc, char* argv[])
 {
 	setbuf(stdout,NULL);
-	printf("Welcome\nIoTunes Technologies\nDocker V:1.01\n");
+	printf("Welcome\nIoTunes Technologies\nDocker V:1.01\nPLEASE WAIT WHILE MOSQUITTO BEGIN\n");
 	MQTTAsync_connectOptions conn_opts2 = MQTTAsync_connectOptions_initializer;
         MQTTAsync_disconnectOptions disc_opts = MQTTAsync_disconnectOptions_initializer;
         MQTTAsync_connectOptions conn_opts1 = MQTTAsync_connectOptions_initializer;
         MQTTAsync_disconnectOptions disc_opts1 = MQTTAsync_disconnectOptions_initializer;
-
+	sleep(10);
 	int rc;
         int ch;
 
