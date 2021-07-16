@@ -1,13 +1,21 @@
 FROM ubuntu:latest
 
-WORKDIR /mqttdocker
+RUN apt update
 
-COPY scriptformqttdocker.sh /mqttdocker
+RUN apt install -y  git
+
+WORKDIR /MyDoc
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get -y install tzdata
+
+RUN git clone https://github.com/AbhinandSuresh/mqttdocker.git
+
+WORKDIR /MyDoc/mqttdocker
 
 RUN chmod 777 scriptformqttdocker.sh &&\
 ./scriptformqttdocker.sh
 
-COPY . /mqttdocker
+RUN cp supervisord.conf /etc/supervisord.conf
 
-CMD ["supervisord","-n","-c","supervisord.conf"]
-
+CMD ["supervisord","-n"]
