@@ -16,6 +16,8 @@ WORKDIR /MyDoc/mqttdocker
 RUN chmod 777 scriptformqttdocker.sh &&\
 ./scriptformqttdocker.sh
 
+RUN make mqtt
+
 RUN mv supervisord.conf /etc/supervisord.conf
 
 VOLUME /MyDoc
